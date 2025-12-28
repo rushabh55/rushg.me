@@ -1,0 +1,13 @@
+.git
+.gitignore
+Dockerfile
+*.swp
+*.swo
+*.log
+node_modules
+**/node_modules
+tmp
+temp
+*.zip
+*.tar.gz
+*.tgz

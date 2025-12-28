@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Signal Lost</title>
+  <style>
+    :root {
+      --bg1: #050912;
+      --bg2: #0b1224;
+      --accent: #19ffd9;
+      --accent-2: #6d7dff;
+      --accent-3: #ff3cac;
+      --grid: rgba(255, 255, 255, 0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 30%, rgba(109,125,255,0.18), transparent 45%),
+                  radial-gradient(circle at 70% 70%, rgba(25,255,217,0.2), transparent 50%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: #e8f6ff;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+    }
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mix-blend-mode: screen;
+      animation: drift 22s linear infinite;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .scanline {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 48%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 52%);
+      background-size: 100% 6px;
+      mix-blend-mode: screen;
+      opacity: 0.25;
+      animation: scan 6s linear infinite;
+      pointer-events: none;
+    }
+    .container {
+      position: relative;
+      text-align: center;
+      padding: 48px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(8,12,24,0.65);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 30px rgba(25,255,217,0.18);
+    }
+    h1 {
+      font-size: clamp(48px, 9vw, 120px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+    }
+    h1::before,
+    h1::after {
+      content: "404";
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: screen;
+      opacity: 0.65;
+    }
+    h1::before { color: var(--accent); transform: translate(-3px, -2px); animation: glitch 2.6s infinite; }
+    h1::after { color: var(--accent-3); transform: translate(3px, 2px); animation: glitch 2s infinite reverse; }
+    .subtitle {
+      margin-top: 12px;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: #b6c7e2;
+    }
+    .bar {
+      margin: 24px auto 18px;
+      width: 220px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      filter: drop-shadow(0 0 10px rgba(25,255,217,0.6));
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .hint {
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: #8ea2c2;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 12px 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #e8f6ff;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, rgba(25,255,217,0.14), rgba(109,125,255,0.08));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .cta:hover {
+      transform: translateY(-3px);
+      border-color: rgba(25,255,217,0.6);
+      box-shadow: 0 12px 38px rgba(25,255,217,0.3);
+    }
+    .cta span:last-child {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+    }
+    @keyframes drift {
+      from { background-position: 0 0, 0 0; }
+      to   { background-position: 120px 120px, 120px 120px; }
+    }
+    @keyframes scan {
+      from { background-position-y: 0; }
+      to   { background-position-y: 100%; }
+    }
+    @keyframes glitch {
+      0%, 15%, 100% { transform: translate(0,0); opacity: 0.65; }
+      5% { transform: translate(3px, -2px); opacity: 0.9; }
+      10% { transform: translate(-4px, 3px); opacity: 0.8; }
+      14% { transform: translate(2px, -1px); opacity: 0.7; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.65; box-shadow: 0 0 16px rgba(25,255,217,0.4); }
+      50% { opacity: 1; box-shadow: 0 0 28px rgba(109,125,255,0.4); }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="scanline"></div>
+  <div class="container">
+    <h1>404</h1>
+    <div class="subtitle">Signal lost in the neon grid</div>
+    <div class="bar"></div>
+    <div class="hint">The coordinates you entered don’t map to any route.</div>
+    <a class="cta" href="/">
+      <span>Return</span>
+      <span>▶</span>
+    </a>
+  </div>
+</body>
+</html>
