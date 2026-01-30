@@ -56,6 +56,26 @@ header .intro-text .skills{font-size:1.75em;}
 section{padding:110px 0;}
 section h2{margin:0;font-size:3em;}
 section.success{color:#e6edf3;background:#0e2b2b;}
+@keyframes work-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+#work .row{margin-bottom:22px;}
+#work .row:not(:first-child) .container{background:#0f1a22;border-radius:16px;padding:22px 26px;border:1px solid rgba(79,211,179,.12);box-shadow:0 14px 40px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.02);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:work-in .6s ease both;}
+#work .row:not(:first-child) .container:hover{transform:translateY(-4px);border-color:rgba(79,211,179,.35);box-shadow:0 20px 60px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.04);}
+#work h3{font-size:1.4em;letter-spacing:.08em;color:#eaf6f7;margin-top:0;}
+#work h4{font-size:1em;font-weight:600;letter-spacing:.08em;color:#9fd7cf;margin-top:6px;}
+#work p{font-size:18px;line-height:1.7;color:#d6e3ea;}
+#work p span.text-center{display:block;text-align:left;}
+@media(max-width:767px){#work .row:not(:first-child) .container{padding:18px 18px;border-radius:12px;}#work p{font-size:16px;}}
+#education .row{margin-bottom:22px;}
+#education .row:not(:first-child) .container{background:linear-gradient(135deg,#0f151d 0%,#0c1720 60%,#0c1f24 100%);border-radius:18px;padding:24px 28px;border:1px solid rgba(79,211,179,.12);box-shadow:0 18px 48px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.02) inset;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:work-in .6s ease both;}
+#education .row:not(:first-child) .container:hover{transform:translateY(-4px);border-color:rgba(79,211,179,.35);box-shadow:0 24px 70px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04) inset;}
+#education h3{font-size:1.4em;letter-spacing:.08em;color:#eaf6f7;margin-top:0;}
+#education h4,#education h5{font-size:.95em;font-weight:600;letter-spacing:.08em;color:#9fd7cf;margin-top:6px;text-transform:uppercase;}
+#education p,#education li{font-size:18px;line-height:1.7;color:#d6e3ea;}
+#education ul{list-style:none;padding-left:0;}
+#education ul li{position:relative;padding-left:18px;}
+#education ul li:before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:999px;background:#4fd3b3;box-shadow:0 0 10px rgba(79,211,179,.7);}
+#education ul{margin-top:12px;}
+@media(max-width:767px){#education .row:not(:first-child) .container{padding:18px 18px;border-radius:12px;}#education p,#education li{font-size:16px;}}
 section.skills-section{background:#0d1218;}
 @media(max-width:767px){section{padding:75px 0;}
 section.first{padding-top:75px;}
@@ -110,6 +130,7 @@ footer .footer-below{padding:25px 0;background-color:#070b10;}
 .btn:focus,
 .btn:active,
 .btn.active{outline:0;}
+footer .footer-col p{font-size:16px;line-height:1.6;color:#d6e3ea;}
 .contact-list{list-style:none;margin:0;padding-left:0;}
 .contact-list li{margin:10px 0;font-size:19px;letter-spacing:.03em;}
 .contact-list i{display:inline-block;width:24px;text-align:center;margin-right:8px;}
