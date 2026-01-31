@@ -30,6 +30,10 @@ $headers = "From: $fromAddress\n";
 if (!empty($email_address)) {
     $headers .= "Reply-To: $email_address";
 }
-mail($to, $email_subject, $email_body, $headers);
-return true;
+if (mail($to, $email_subject, $email_body, $headers)) {
+    echo "OK";
+    return true;
+}
+echo "Mail delivery failed.";
+return false;
 ?>

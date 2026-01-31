@@ -17,10 +17,13 @@ user ${SMTP_USER:-}
 password ${SMTP_PASSWORD:-}
 tls ${SMTP_TLS}
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
-logfile /var/log/msmtp.log
+logfile /tmp/msmtp.log
 EOF
 
+  chown www-data:www-data /etc/msmtprc
   chmod 600 /etc/msmtprc
+  touch /tmp/msmtp.log
+  chmod 666 /tmp/msmtp.log
 fi
 
 exec docker-php-entrypoint "$@"
