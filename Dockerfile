@@ -6,7 +6,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # Configure PHP to use msmtp as sendmail
-RUN echo "sendmail_path = /usr/bin/msmtp -t -i" > /usr/local/etc/php/conf.d/sendmail.ini
+RUN echo "sendmail_path = /usr/bin/msmtp -t -i -C /tmp/msmtprc" > /usr/local/etc/php/conf.d/sendmail.ini
 
 # Emit structured access logs with latency to stdout
 RUN set -eux; \

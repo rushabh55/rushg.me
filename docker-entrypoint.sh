@@ -7,7 +7,7 @@ if [ -n "${SMTP_HOST:-}" ]; then
   : "${SMTP_FROM:=noreply@example.com}"
   : "${SMTP_TLS:=on}"
 
-  cat > /etc/msmtprc <<EOF
+  cat > /tmp/msmtprc <<EOF
 account default
 host ${SMTP_HOST}
 port ${SMTP_PORT}
@@ -20,8 +20,7 @@ tls_trust_file /etc/ssl/certs/ca-certificates.crt
 logfile /tmp/msmtp.log
 EOF
 
-  chown www-data:www-data /etc/msmtprc
-  chmod 600 /etc/msmtprc
+  chmod 600 /tmp/msmtprc
   touch /tmp/msmtp.log
   chmod 666 /tmp/msmtp.log
 fi
