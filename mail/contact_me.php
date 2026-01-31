@@ -1,27 +1,35 @@
 <?php
-// Check for empty fields
-if(empty($_POST['name'])  		||
-   empty($_POST['email']) 		||
-   empty($_POST['phone']) 		||
-   empty($_POST['message'])	||
-   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
-   {
-	echo "No arguments Provided!";
-	return false;
-   }
-	
-$name = $_POST['name'];
-$email_address = $_POST['email'];
-$phone = $_POST['phone'];
-$message = $_POST['message'];
-	
+// Basic honeypot check
+if (!empty($_POST['website'])) {
+    echo "Spam detected.";
+    return false;
+}
+
+$name = isset($_POST['name']) ? trim($_POST['name']) : '';
+$email_address = isset($_POST['email']) ? trim($_POST['email']) : '';
+$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+$message = isset($_POST['message']) ? trim($_POST['message']) : '';
+
+// Require name + message + (email or phone)
+if (empty($name) || empty($message) || (empty($email_address) && empty($phone))) {
+    echo "No arguments Provided!";
+    return false;
+}
+
+if (!empty($email_address) && !filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
+    echo "Invalid email.";
+    return false;
+}
+
 // Create the email and send the message
-$to = getenv('MAIL_TO') ? getenv('MAIL_TO') : 'yourname@yourdomain.com'; // Override with MAIL_TO env var
+$to = getenv('MAIL_TO') ? getenv('MAIL_TO') : 'admin@rushg.me'; // Override with MAIL_TO env var
 $fromAddress = getenv('MAIL_FROM') ? getenv('MAIL_FROM') : 'noreply@yourdomain.com';
-$email_subject = "Website Contact Form:  $name";
-$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-$headers = "From: $fromAddress\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-$headers .= "Reply-To: $email_address";	
-mail($to,$email_subject,$email_body,$headers);
-return true;			
+$email_subject = "Website Contact Form: $name";
+$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: ".($email_address ?: 'N/A')."\n\nPhone: ".($phone ?: 'N/A')."\n\nMessage:\n$message";
+$headers = "From: $fromAddress\n";
+if (!empty($email_address)) {
+    $headers .= "Reply-To: $email_address";
+}
+mail($to, $email_subject, $email_body, $headers);
+return true;
 ?>
